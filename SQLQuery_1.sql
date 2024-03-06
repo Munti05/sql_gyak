@@ -1,0 +1,19 @@
+
+SELECT FOGLALAS_PK, METTOL, DATEADD(month, 1, METTOL) AS 'Módositott Kezdődátum'
+FROM FOGLALAS
+WHERE UGYFEL_FK = 'emese'
+
+
+
+
+SELECT szh.SZALLAS_ID, szh.SZALLAS_NEV, COUNT(SZOBA_ID) AS 'Klímás szobák száma'
+FROM Szallashely szh JOIN Szoba sz ON szh.SZALLAS_ID = sz.SZALLAS_FK
+WHERE KLIMAS = 'i'
+GROUP BY szh.SZALLAS_ID, szh.SZALLAS_NEV
+
+
+
+SELECT szh.SZALLAS_NEV, COUNT(f.FOGLALAS_PK) AS 'Foglalások Száma'
+FROM Szallashely szh FULL JOIN Szoba sz ON szh.SZALLAS_ID = sz.SZALLAS_FK
+    FULL JOIN Foglalas f ON f.SZOBA_FK = sz.SZOBA_ID
+GROUP BY szh.SZALLAS_NEV
