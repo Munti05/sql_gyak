@@ -1,22 +1,20 @@
-/*1. Készítsünk nézetet VSZOBA néven, amely megjeleníti a szobák adatai mellett a megfelelő szálláshely nevét, helyét és a csillagok számát is!
+--A Szálláshely adatbázis Vendég táblájának mintájára hoztam létre ezt a táblát
 
-Az oszlopoknak nem szükséges külön nevet adni!
-Teszteljük is a nézetet, pl: SELECT * FROM UJAENB_VSZOBA*/
+CREATE TABLE qas
+(USERNEV varchar(100) MASKED WITH (Function = 'default()'),
+NEV varchar(100) MASKED WITH (Function = 'default()'),
+EMAIL varchar(100) MASKED WITH (function = 'email()'),
+SZAML_CIM varchar(100) MASKED WITH (Function = 'partial(1,"XXX",1)'),
+SZUL_DAT date MASKED WITH (FUNCTION = 'default()')
+)
 
-CREATE OR ALTER VIEW VSZOBA
+INSERT INTO qas
+(USERNEV, NEV, EMAIL, SZAML_CIM, SZUL_DAT)
+VALUES
+('Dinesh','Asanka','Dineshasanka@gmail.com','Szegöd','2020-01-01'),
+('Saman','Perera','saman@somewhere.lk', 'Szögöd','2020-01-01'),
+('Julian','Soman','j.soman@uniersity.edu.org','Szöged','2019-11-01'),
+('Telishia','Mathewsa','tm1@rose.lk','Szeged','2018-01-01')
 
-AS 
 
-SELECT sz.*, szh.SZALLAS_NEV, szh.HELY, szh.CSILLAGOK_SZAMA
-FROM Szoba sz JOIN Szallashely szh On sz.SZALLAS_FK = szh.SZALLAS_ID
 
-Select * FROM VSZOBA
-
-/*2 Készítsen tárolt eljárást SPUgyfelFoglalasok, amely a paraméterként megkapott ügyfél azonosítóhoz tartozó foglalások adatait listázza!
-Teszteljük a tárolt eljárás működését, pl: EXEC UJAENB_SPUgyfelFoglalasok 'laszlo2'
-*/
-
-/*
-3. Készítsen skalár értékű függvényt UDFFerohely néven, amely visszaadja, hogy a paraméterként megkapott foglalás azonosítóhoz hány férőhelyes szoba tartozik!
-a. Teszteljük a függvény működését!
-*/
