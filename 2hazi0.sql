@@ -16,5 +16,8 @@ VALUES
 ('JS123','Julian Soman','j.soman@uniersity.edu.org','Szöged','2019-11-01'),
 ('TM123','Telishia Mathewsa','tm1@rose.lk','Szeged','2018-01-01')
 
+SELECT *
+From qas
+
 
 
