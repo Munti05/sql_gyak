@@ -1,4 +1,0 @@
-CREATE USER MaskUser6 WITHOUT Login;
-GRANT SELECT ON qas TO MaskUser6
-
-
