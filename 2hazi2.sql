@@ -1,4 +1,0 @@
-EXECUTE AS User= 'MaskUser6';
-SELECT * FROM qas
-REVERT
-
