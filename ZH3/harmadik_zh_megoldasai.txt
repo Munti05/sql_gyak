@@ -1,0 +1,22 @@
+//1
+FILTER: {"genres.0":"Short",$and: [{"year":{$gte:1945}}, {"year":{$lte:1970}}]}
+PROJECT: {title:1,year:1}
+SORT: {year:1,title:1}
+
+//2
+db.users.find({email:/.com/},{name:1,email:1})
+
+//3
+db.movies.aggregate([{"$match":{"year":{$gt:1950}}},{"$group":{_id:"$rated",atlag:{$avg:"$runtime"}}}])
+
+//4
+match (p:Person)-[:ACTED_IN]->(m:Movie)
+where m.released >1960
+return p.name as `SZEREPLO`, m.title as `CIM`, m.released as `EV`
+order by EV desc
+
+//5
+match (p:Person)-[:ACTED_IN]->(m:Movie)
+Where p.born>1980
+with p,count(m) as `NumMoviesActedIn`
+return p.name as `Actor`, p.born as `BirthYear`, NumMoviesActedIn
